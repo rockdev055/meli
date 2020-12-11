@@ -1,3 +1,6 @@
+import { getReverseProxyDial } from '../utils/get-reverse-proxy-dial';
+import { env } from '../../env/env';
+
 export const fallback = {
   /*
    * By default, caddy returns 200 with an empty response when no route matches.
@@ -6,9 +9,18 @@ export const fallback = {
    */
   handle: [
     {
-      handler: 'static_response',
-      status_code: '523',
-      body: 'Requested URL not served on this server',
+      handler: 'rewrite',
+      uri: '/static/523.html',
+    },
+    // https://caddyserver.com/docs/json/apps/http/servers/routes/handle/reverse_proxy/
+    {
+      handler: 'reverse_proxy',
+      upstreams: [{
+        dial: getReverseProxyDial(env.MELI_URL_INTERNAL),
+      }],
+      handle_response: [{
+        status_code: '523',
+      }],
     },
   ],
   terminal: true,

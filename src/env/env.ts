@@ -6,7 +6,6 @@ export interface Env {
   DEBUG: string;
   MELI_PORT: number;
   MELI_URL: string;
-  MELI_API_PATH: string;
   MELI_URL_INTERNAL: string;
   MELI_UI_URL: string;
   MELI_UI_URL_INTERNAL: string;
@@ -57,6 +56,7 @@ export interface Env {
   MELI_TMP_DIRECTORY: string;
   MELI_SITES_DIR: string;
   MELI_INVITE_EXPIRATION_TIME: number;
+  MELI_STATIC_DIR: string;
   MELI_BCRYPT_SALTROUNDS: number;
   MELI_ACME_SERVER: string;
   MELI_ACME_CA_PATH: string;

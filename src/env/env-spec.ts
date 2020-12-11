@@ -32,9 +32,6 @@ export const envSpec: EnvSpec<Env> = {
   MELI_SITES_URL: {
     schema: string().optional().custom(isUrl).default(process.env.MELI_URL || null),
   },
-  MELI_API_PATH: {
-    schema: string().optional().default('/'),
-  },
   MELI_STANDALONE: {
     transform: stringToBoolean(),
     schema: boolean().optional().default(false),
@@ -211,6 +208,9 @@ export const envSpec: EnvSpec<Env> = {
   },
   MELI_TMP_DIRECTORY: {
     schema: string().optional().default(tmpdir()),
+  },
+  MELI_STATIC_DIR: {
+    schema: string().optional().default(join(__dirname, './public')),
   },
   MELI_INVITE_EXPIRATION_TIME: {
     transform: stringToInt(),

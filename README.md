@@ -46,7 +46,7 @@ Docs: https://docs.meli.sh
 
 1. Clone the [UI repo](https://github.com/getmeli/meli-ui).
 1. `npm i && npm start`
-1. The app is accessible from http://localhost:3001, but we develop from http://localhost:8080 (see below)
+1. The app is accessible from http://localhost:3001, but we develop from http://localhost:80 (see below)
 
 ### Start Caddy and the API
 
@@ -56,9 +56,9 @@ Docs: https://docs.meli.sh
 
 If you develop with the UI, you'll need to clone the [UI repo](https://github.com/getmeli/meli-ui), then start it.
 
-You can now browse at `http://localhost:8080`:
-- `http://localhost:8080/` => UI
-- `http://localhost:8080/api`, `http://localhost:8080/auth` and `http://localhost:8080/socket.io` => API
+You can now browse at `http://localhost:80`:
+- `http://localhost:80/` => UI
+- `http://localhost:80/api`, `http://localhost:80/auth` and `http://localhost:80/socket.io` => API
 - `http://loopback.sh` => your sites will be served here
 
 ### DNS config
@@ -114,22 +114,3 @@ Your sites will be served at `*.test`.
 
 Pros: you don't need to be connected to the internet, no need to reconfigure /etc/hosts
 Cons: a bit complex, config required
-
-### SSL
-
-Use [`mkcert`](https://github.com/FiloSottile/mkcert) to generate a certificate and key:
-
-```shell script
-brew install mkcert nss
-mkcert -install
-mkcert loopback.sh
-```
-
-then update your `.env` with:
-
-```
-MELI_SSL_KEY=localhost-key.pem
-MELI_SSL_CERT=localhost.pem
-```
-
-TODO see how to configure Caddy to use these files
